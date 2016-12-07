@@ -11,12 +11,12 @@ namespace Review.Objects
 		private string _description;
 		private int _cuisineId;
 
-		public Restaurant(string restaurantName, string restaurantDescription, int restaurantCuisineId, int Id = 0)
+		public Restaurant(string restaurantName, string restaurantDescription, int restaurantCuisineId, int id = 0)
 		{
 			_name = restaurantName;
 			_description = restaurantDescription;
 			_cuisineId = restaurantCuisineId;
-			_id = Id;
+			_id = id;
 		}
 
 		public override bool Equals(System.Object otherRestaurant)
@@ -53,9 +53,9 @@ namespace Review.Objects
 		{
 			return _cuisineId;
 		}
-		public void SetId(int Id)
+		public void SetId(int id)
 		{
-			_id = Id;
+			_id = id;
 		}
 		public void SetName(string restaurantName)
 		{
@@ -137,6 +137,42 @@ namespace Review.Objects
 			{
 				conn.Close();
 			}
+		}
+
+		public static Restaurant Find(int id)
+		{
+			SqlConnection conn = DB.Connection();
+			conn.Open();
+
+			SqlCommand cmd = new SqlCommand("SELECT* FROM restaurant WHERE id = @RestaurantId;", conn);
+			SqlParameter restaurantIdParameter = new SqlParameter();
+			restaurantIdParameter.ParameterName = "@RestaurantId";
+			restaurantIdParameter.Value = id.ToString();
+			cmd.Parameters.Add(restaurantIdParameter);
+			SqlDataReader rdr = cmd.ExecuteReader();
+
+			int foundRestaurantId = 0;
+			string foundRestaurantName = null;
+			string foundRestaurantDescription = null;
+			int foundRestaurantCuisineId = 0;
+			while(rdr.Read())
+			{
+				foundRestaurantId = rdr.GetInt32(3);
+				foundRestaurantName = rdr.GetString(0);
+				foundRestaurantDescription = rdr.GetString(1);
+				foundRestaurantCuisineId = rdr.GetInt32(2);
+			}
+			Restaurant foundRestaurant = new Restaurant(foundRestaurantName, foundRestaurantDescription, foundRestaurantCuisineId);
+
+			if(rdr != null)
+			{
+				rdr.Close();
+			}
+			if(conn != null)
+			{
+				conn.Close();
+			}
+			return foundRestaurant;
 		}
 
 		public static void DeleteAll()
