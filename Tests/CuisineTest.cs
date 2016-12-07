@@ -40,6 +40,30 @@ namespace Review
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Test_Save_AssignsIdToObject()
+    {
+      Cuisine testCuisine = new Cuisine("Pizza");
+
+      testCuisine.Save();
+      Cuisine savedCuisine = Cuisine.GetAll()[0];
+
+      int result = savedCuisine.GetId();
+      int testId = testCuisine.GetId();
+
+      Assert.Equal(testId, result);
+    }
+
+    [Fact]
+    public void Test_Find_FindsRestaurantInDatabase()
+    {
+      Cuisine testCuisine = new Cuisine("Pizza");
+      testCuisine.Save();
+      Cuisine foundCuisine = Cuisine.Find(testCuisine.GetId());
+
+      Assert.Equal(testCuisine, foundCuisine);
+    }
+
     public void Dispose()
     {
       Cuisine.DeleteAll();
