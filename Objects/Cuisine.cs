@@ -12,6 +12,6 @@ namespace Review.Objects
 
   public Cuisine(string cuisineName, int cuisineId)
   {
-    
+    _name
   }
 }
