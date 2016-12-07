@@ -57,13 +57,11 @@ namespace  Review
     [Fact]
     public void Test_Find_FindsRestaurantInDatabase()
     {
-      Restaurant testRestaurant = new Restaurant("Joes Pizza", "Marios Cafe", 1);
+      Restaurant testRestaurant = new Restaurant("Joes Pizza", "Pizzeria", 1);
       testRestaurant.Save();
-      Console.WriteLine(testRestaurant);
       Restaurant foundRestaurant = Restaurant.Find(testRestaurant.GetId());
-      Console.WriteLine(testRestaurant);
-      Console.WriteLine(foundRestaurant);
 
+      
       Assert.Equal(testRestaurant, foundRestaurant);
     }
 

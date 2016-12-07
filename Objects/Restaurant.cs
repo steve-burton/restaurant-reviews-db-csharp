@@ -144,7 +144,7 @@ namespace Review.Objects
 			SqlConnection conn = DB.Connection();
 			conn.Open();
 
-			SqlCommand cmd = new SqlCommand("SELECT* FROM restaurant WHERE id = @RestaurantId;", conn);
+			SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant WHERE id = @RestaurantId;", conn);
 			SqlParameter restaurantIdParameter = new SqlParameter();
 			restaurantIdParameter.ParameterName = "@RestaurantId";
 			restaurantIdParameter.Value = id.ToString();
@@ -162,7 +162,7 @@ namespace Review.Objects
 				foundRestaurantDescription = rdr.GetString(1);
 				foundRestaurantCuisineId = rdr.GetInt32(2);
 			}
-			Restaurant foundRestaurant = new Restaurant(foundRestaurantName, foundRestaurantDescription, foundRestaurantCuisineId);
+			Restaurant foundRestaurant = new Restaurant(foundRestaurantName, foundRestaurantDescription, foundRestaurantCuisineId, foundRestaurantId);
 
 			if(rdr != null)
 			{
