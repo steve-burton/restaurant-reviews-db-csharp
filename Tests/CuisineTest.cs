@@ -73,13 +73,13 @@ namespace Review
       Cuisine testCuisine = new Cuisine("Pizza");
       testCuisine.Save();
 
-      Restaurant firstRestaurant = new Restaurant("Joes Pizza", testCuisine.GetId());
+      Restaurant firstRestaurant = new Restaurant("Pizza", testCuisine.GetId());
       firstRestaurant.Save();
-      Restaurant secondRestaurant = new Restaurant("Als Pizza", testCuisine.GetId());
+      Restaurant secondRestaurant = new Restaurant("Pizza", testCuisine.GetId());
       secondRestaurant.Save();
 
       List<Restaurant> testRestaurantList = new List<Restaurant> {firstRestaurant, secondRestaurant};
-      List<Restaurant> resultRestaurantList = testCuisine.GetTasks();
+      List<Restaurant> resultRestaurantList = testCuisine.GetRestaurants();
 
       Assert.Equal(testRestaurantList, resultRestaurantList);
     }
