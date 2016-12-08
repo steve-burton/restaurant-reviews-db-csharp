@@ -140,9 +140,9 @@ namespace Review.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant WHERE cuisine_id = @CuisineId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant WHERE cuisine_id = @restaurantCuisineId;", conn);
       SqlParameter cuisineIdParameter = new SqlParameter();
-      cuisineIdParameter.ParameterName = "@CuisineId";
+      cuisineIdParameter.ParameterName = "@restaurantCuisineId";
       cuisineIdParameter.Value = this.GetId();
       cmd.Parameters.Add(cuisineIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -152,6 +152,7 @@ namespace Review.Objects
       {
         int restaurantId = rdr.GetInt32(3);
         string restaurantName = rdr.GetString(0);
+        string restaurantDescription = rdr.GetString(1);
         int restaurantCuisineId = rdr.GetInt32(2);
         Restaurant newRestaurant = new Restaurant(restaurantName, restaurantDescription, restaurantCuisineId, restaurantId);
         restaurants.Add(newRestaurant);

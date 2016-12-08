@@ -73,11 +73,10 @@ namespace Review
       Cuisine testCuisine = new Cuisine("Pizza");
       testCuisine.Save();
 
-      Restaurant firstRestaurant = new Restaurant("Pizza", testCuisine.GetId());
+      Restaurant firstRestaurant = new Restaurant("Joes Pizza", "Pizza",  testCuisine.GetId());
       firstRestaurant.Save();
-      Restaurant secondRestaurant = new Restaurant("Pizza", testCuisine.GetId());
+      Restaurant secondRestaurant = new Restaurant("Joes Pizza", "Pizza",  testCuisine.GetId());
       secondRestaurant.Save();
-
       List<Restaurant> testRestaurantList = new List<Restaurant> {firstRestaurant, secondRestaurant};
       List<Restaurant> resultRestaurantList = testCuisine.GetRestaurants();
 
