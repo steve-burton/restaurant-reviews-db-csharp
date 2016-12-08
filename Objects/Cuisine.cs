@@ -116,6 +116,7 @@ namespace Review.Objects
 
       int foundCuisineId = 0;
       string foundCuisineName = null;
+
       while(rdr.Read())
       {
         foundCuisineId = rdr.GetInt32(1);
@@ -132,6 +133,11 @@ namespace Review.Objects
         conn.Close();
       }
       return foundCuisine;
+    }
+
+    public List<Restaurant> GetRestaurants()
+    {
+      SqlConnection conn = DB.Connection()
     }
 
     public static void DeleteAll()

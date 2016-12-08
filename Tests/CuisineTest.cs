@@ -1,6 +1,8 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using Review.Objects;
 
 namespace Review
@@ -32,8 +34,8 @@ namespace Review
     public void Test_Save_SavesToDatabase()
     {
       Cuisine testCuisine = new Cuisine("Pizza");
-
       testCuisine.Save();
+
       List<Cuisine> result = Cuisine.GetAll();
       List<Cuisine> testList = new List<Cuisine>{testCuisine};
 
@@ -44,8 +46,8 @@ namespace Review
     public void Test_Save_AssignsIdToObject()
     {
       Cuisine testCuisine = new Cuisine("Pizza");
-
       testCuisine.Save();
+
       Cuisine savedCuisine = Cuisine.GetAll()[0];
 
       int result = savedCuisine.GetId();
@@ -59,9 +61,27 @@ namespace Review
     {
       Cuisine testCuisine = new Cuisine("Pizza");
       testCuisine.Save();
+
       Cuisine foundCuisine = Cuisine.Find(testCuisine.GetId());
 
       Assert.Equal(testCuisine, foundCuisine);
+    }
+
+    [Fact]
+    public void Test_GetRestaurants_RetrievesAllRestaurantsWithCategory()
+    {
+      Cuisine testCuisine = new Cuisine("Pizza");
+      testCuisine.Save();
+
+      Restaurant firstRestaurant = new Restaurant("Joes Pizza", testCuisine.GetId());
+      firstRestaurant.Save();
+      Restaurant secondRestaurant = new Restaurant("Als Pizza", testCuisine.GetId());
+      secondRestaurant.Save();
+
+      List<Restaurant> testRestaurantList = new List<Restaurant> {firstRestaurant, secondRestaurant};
+      List<Restaurant> resultRestaurantList = testCuisine.GetTasks();
+
+      Assert.Equal(testRestaurantList, resultRestaurantList);
     }
 
     public void Dispose()
