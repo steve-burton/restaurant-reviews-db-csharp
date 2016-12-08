@@ -12,6 +12,13 @@ namespace Review
 			{
 				return View["index.cshtml"];
 			};
+			Get["/add-new-restaurant"] = _ => {
+				return View["add-new-restaurant.cshtml"];
+			};
+			Get["add-new-restaurant"] = _ => 
+			{
+				return View["index.cshtml"];
+			};
 		}
 	}
 }
