@@ -11,22 +11,16 @@
 			<div class="jumbotron">
 				<div class="row">
 					<div class="col-md-12">
-						<h1>Add a new cuisine</h1>
+						<h2>You've added a new type of cuisine!</h2>
+						<h3>@Model["cuisine"].GetName()</h3>
+						<p><a href="/">Add another cuisine</a></p>
+						<p><a href="/view-all-restaurants">View all restaurants</a></p>
 					</div>
 				</div>
 			</div>
-			<div class="jumbotron">
-				<form class="add-new-cuisine" action="/added-cuisine" method="post">
-					<div class="form-group">
-						<label for="new-cuisine">Enter your new cuisine:</label>
-            <br>
-            <input type="text" name="new-cuisine" id="new-cuisine" placeholder="Insert type of cuisine">
-					</div>
-          <button class="btn btn-info" type="submit" name="button">Enter</button>
-        </form>
-			</div>
+
       <div class="jumbotron">
-				<h2><a href="/">Return home</a></h2>
+
       </div>
 		</div>
 	</body>
