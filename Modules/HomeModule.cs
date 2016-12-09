@@ -1,5 +1,6 @@
 using Nancy;
 using System.Collections.Generic;
+using Nancy.ViewEngines.Razor;
 using Review.Objects;
 
 namespace Review
@@ -13,7 +14,8 @@ namespace Review
 				return View["index.cshtml"];
 			};
 			Get["/add-new-restaurant"] = _ => {
-				return View["add-new-restaurant.cshtml"];
+				List<Cuisine> AllCuisine = Cuisine.GetAll();
+				return View["add-new-restaurant.cshtml", AllCuisine];
 			};
 			Get["/add-new-cuisine"] = _ => {
 				return View["add-new-cuisine.cshtml"];
@@ -26,8 +28,9 @@ namespace Review
 			Post["/added-cuisine"] = _ => {
 				Cuisine newCuisine = new Cuisine(Request.Form["new-cuisine"]);
 				newCuisine.Save();
-				return View["added-cuisine.cshtml"];
+				return View["success.cshtml"];
 			};
+
 		}
 	}
 }

@@ -28,22 +28,19 @@
             <input type="text" name="new-description" id="new-description" placeholder="Insert Description">
 					</div>
 					<div class="form-group">
-						<select name="category-id">
-							@foreach (var cuisine in Model["cuisine"])
+						<select name="cuisine-id">
+							@foreach (var cuisine in Model)
 							{
-								<option value="@cuisine.GetId()">@Model["cuisine"].GetName()</option>
+								<option value="@cuisine.GetId()">@Model.GetName()</option>
 							}
 						</select>
-						<!-- <label for="new-cuisine">Enter a Cuisine:</label>
-            <br>
-            <input type="select" name="new-cuisine" id="new-cuisine" placeholder="Insert Cuisine"> -->
+						<button class="btn btn-info" type="submit" name="button">Enter</button>
 					</div>
-          <button class="btn btn-info" type="submit" name="button">Enter</button>
-        </form>
+				</form>
 			</div>
-      <div class="jumbotron">
-        <h2><a href="/">Return home</a></h2>
-      </div>
+			<div class="jumbotron">
+				<h2><a href="/">Return home</a></h2>
+			</div>
 		</div>
 	</body>
 </html>
